@@ -48,6 +48,13 @@ func Configure(c *config.Config) (Provider, error) {
 			return nil, err
 		}
 		return &provider, nil
+	} else if len(c.AZURE.Key) > 0 {
+		log.Info("Using Azure Blob as the state/locks provider")
+		provider, err := NewAZURE(c)
+		if err != nil {
+			return nil, err
+		}
+		return &provider, nil
 	}
 
 	log.Info("Using AWS (S3+DynamoDB) as the state/locks provider")

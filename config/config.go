@@ -50,6 +50,13 @@ type TFEConfig struct {
 	Organization string `long:"tfe-organization" env:"TFE_ORGANIZATION" yaml:"tfe-organization" description:"Terraform Enterprise organization for states access"`
 }
 
+// AZUREConfig stores the azure configuration
+type AZUREConfig struct {
+	Container string `long:"azure-container" env:"AZURE_CONTAINER" yaml:"container" description:"s"`
+	Account   string `long:"azure-account" env:"AZURE_ACCOUNT" yaml:"account" description:"s"`
+	Key       string `long:"azure-key" env:"AZURE_KEY" yaml:"key" description:"s"`
+}
+
 // WebConfig stores the UI interface parameters
 type WebConfig struct {
 	Port      uint16 `short:"p" long:"port" env:"TERRABOARD_PORT" yaml:"port" description:"Port to listen on." default:"8080"`
@@ -70,6 +77,8 @@ type Config struct {
 	AWS AWSConfig `group:"AWS Options" yaml:"aws"`
 
 	TFE TFEConfig `group:"Terraform Enterprise Options" yaml:"tfe"`
+
+	AZURE AZUREConfig `group:"Azure Options" yaml:"azure"`
 
 	Web WebConfig `group:"Web" yaml:"web"`
 }
